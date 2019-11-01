@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 import './header.scss';
 //svg
 import { ReactComponent as Logo } from '../../../assets/crown.svg';
+// redux
+import { connect } from 'react-redux';
+//components
+import CartIcon from '../../cartIcon/CartIcon';
+import CartDropdown from '../../cart-dropdown/CartDropdown';
 
-const header = ({ currentUser }) => {
+const header = ({ user: { currentUser }, cart: { hidden } }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -26,7 +31,8 @@ const header = ({ currentUser }) => {
             className="option"
             onClick={() => {
               auth.signOut();
-              window.location.reload();
+              console.log('aaaa');
+              // window.location.reload();
             }}
           >
             SIGN OUT
@@ -36,9 +42,16 @@ const header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {!hidden && <CartDropdown />}
     </div>
   );
 };
 
-export default header;
+const mapStateToProps = state => ({
+  user: state.user,
+  cart: state.cart
+});
+
+export default connect(mapStateToProps)(header);
