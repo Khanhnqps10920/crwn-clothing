@@ -10,6 +10,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // redux
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/action/user';
+import Checkout from './component/checkout/Checkout';
 
 function App({ setCurrentUser, user: { currentUser } }) {
   // const [currentUser, setCurrentUser] = useState(null);
@@ -39,6 +40,7 @@ function App({ setCurrentUser, user: { currentUser } }) {
           path="/signin"
           render={() => (currentUser ? <Redirect to="/" /> : <SignInSignUp />)}
         />
+        <Route exact path="/checkout" component={Checkout} />
       </Switch>
     </BrowserRouter>
   );
