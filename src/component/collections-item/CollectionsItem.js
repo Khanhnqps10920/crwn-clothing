@@ -31,9 +31,9 @@ const CollectionsItem = ({
 };
 
 CollectionsItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  name: PropTypes.string,
+  imageUrl: PropTypes.string,
+  price: PropTypes.number
 };
 
 const mapStateToProps = state => ({});
@@ -42,7 +42,4 @@ const mapDispatchToProps = {
   addItemToCart
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CollectionsItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionsItem);

@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import './PreviewCollections.scss';
 import CollectionsItem from '../collections-item/CollectionsItem';
 
-const PreviewCollections = ({ title, items }) => {
+const PreviewCollections = ({ title, items, onClick }) => {
   return (
     <div className="collection-preview">
-      <h1 className="title">{title.toUpperCase()}</h1>
+      <h1 className="title" onClick={() => onClick(title)}>
+        {title.toUpperCase()}
+      </h1>
       <div className="preview">
         {items
           .filter((_, idx) => idx < 4)
