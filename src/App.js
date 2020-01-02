@@ -8,11 +8,13 @@ import Header from './component/common/header/header';
 import SignInSignUp from './container/SignIn-SignUp/SignInSignUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // redux
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/action/user';
 import Checkout from './component/checkout/Checkout';
+import { selectCurrentUser } from './redux/reducer/user.selector';
 
-function App({ setCurrentUser, user: { currentUser } }) {
+function App({ setCurrentUser, currentUser }) {
   // const [currentUser, setCurrentUser] = useState(null);
 
   let unSubscribeFromAuth = null;
@@ -46,8 +48,8 @@ function App({ setCurrentUser, user: { currentUser } }) {
   );
 }
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = {

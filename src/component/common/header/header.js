@@ -15,22 +15,28 @@ import CartDropdown from '../../cart-dropdown/CartDropdown';
 import { selectCartHidden } from '../../../redux/reducer/cart.selector';
 import { selectCurrentUser } from '../../../redux/reducer/user.selector';
 
+// styled cpn
+
+import {
+  OptionsContainer,
+  LogoContainer,
+  HeaderContainer,
+  OptionsDiv,
+  OptionsLink
+} from './Header.styles';
+
 const header = ({ currentUser, hidden }) => {
   return (
-    <div className="header">
-      <Link className="logo-container" to="/">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <div className="options">
-        <Link className="option" to="/shop">
-          Shop
-        </Link>
-        <Link className="option" to="/shop">
-          Contact
-        </Link>
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionsLink to="/shop">Shop</OptionsLink>
+        <OptionsLink to="/shop">Contact</OptionsLink>
         {currentUser ? (
-          <div
-            className="option"
+          <OptionsDiv
+            // as="div" => div element
             onClick={() => {
               auth.signOut();
               console.log('aaaa');
@@ -38,16 +44,14 @@ const header = ({ currentUser, hidden }) => {
             }}
           >
             SIGN OUT
-          </div>
+          </OptionsDiv>
         ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
+          <OptionsLink to="/signin">SIGN IN</OptionsLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {!hidden && <CartDropdown />}
-    </div>
+    </HeaderContainer>
   );
 };
 

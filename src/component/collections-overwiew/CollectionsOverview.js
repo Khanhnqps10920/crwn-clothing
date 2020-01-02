@@ -6,7 +6,7 @@ import { selectShopDataForReview } from '../../redux/reducer/shop.selector';
 import PreviewCollections from '../preview-collections/PreviewCollections';
 import './CollectionsOverview.scss';
 
-const CollectionsOverview = ({ history, shopData }) => {
+const CollectionsOverview = ({ history, shopData, loading }) => {
   const handleCollectionClick = routeName => {
     history.push(`/shop/${routeName.toLowerCase()}`);
   };
